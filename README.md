@@ -28,6 +28,11 @@ Les installations nécessaires pour le lancement du projet sont :
 * python
 * django
 
+```sh
+  python -m pip install Django
+  ```
+
+
 Les librairies python suivantes sont à installer:
   ```sh
   pip install DateTime
