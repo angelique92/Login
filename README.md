@@ -45,13 +45,14 @@ Les librairies python suivantes sont à installer:
   ```
 
 
-### Lancement du projet
+## Lancement du projet
 
-## Avec codespaces sur Github
+### Avec codespaces sur Github
 
-Appuyer sur le bouton Code puis sélectionner Codespaces puis créer un codespaces sur main ( cliquer sur le plus )
-Le projet est chargé sur le cloud de Github avec le projet. 
-lancer les commandes suivantes : 
+Appuyer sur le bouton Code puis sélectionner Codespaces puis créer un codespaces sur main ( cliquer sur le plus )  
+Le projet est chargé sur le cloud de Github avec le projet.
+
+Lancer les commandes suivantes : 
 ```sh
   python -m pip install Django
   ```
@@ -63,7 +64,7 @@ lancer les commandes suivantes :
   ![My Image](codespaces_charge.png)
 
 
-## En local
+### En local
 
 Après avoir effectué les installations et téléchargé le dépot git, voici les commandes à effectuer.
  ```sh
