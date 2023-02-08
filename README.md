@@ -49,7 +49,7 @@ Les librairies python suivantes sont à installer:
 
 ### Avec codespaces sur Github
 
-Appuyer sur le bouton Code puis sélectionner Codespaces puis créer un codespaces sur main ( cliquer sur le plus )  
+Appuyer sur le bouton Code puis sélectionner Codespaces puis créer un codespaces sur main ( cliquer sur le + )  
 Le projet est chargé sur le cloud de Github avec le projet.
 
 Lancer les commandes suivantes : 
