@@ -9,7 +9,7 @@ L'utilisateur peut se connecter grâce à son pseudo et son mot de passe.
 Un mot de passe correcte doit répondre à ces instructions :
 * Doit avoir au moins 8 caractères
 * Doit avoir des minuscules et masjuscules 
-* Doit avoir au moins un chiffres 
+* Doit avoir au moins un chiffre
 
 L'utilisateur peut créer un nouveau compte en saisisant un nouveau pseudo et son mot de passe.  
 Les fonctionnalités de sécurité sont :
