@@ -1,4 +1,4 @@
-
+![My Image](page_principale.png)
 <!-- À propos du projet -->
 ## À propos du projet
 
