@@ -1,0 +1,20 @@
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+     <link rel="stylesheet" href="{% static 'css/loginPage.css' %}" >
+</head>
+
+<div class="login-box">
+  <h2>Message</h2>
+      <form action="" method="post" novalidate>
+    {% csrf_token %}
+          <div class="user-box">
+            <h3 style="color: white;"> {{info}}
+            <h3 style="color: red;"> {{error}}</h3>
+          </div>
+          {% csrf_token %}
+     <button type="submit" name="btn_back"> Back  </button>
+      </form>
+
+</div>
