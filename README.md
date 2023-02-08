@@ -47,6 +47,24 @@ Les librairies python suivantes sont à installer:
 
 ### Lancement du projet
 
+## Avec codespaces sur Github
+
+Appuyer sur le bouton Code puis sélectionner Codespaces puis créer un codespaces sur main ( cliquer sur le plus )
+Le projet est chargé sur le cloud de Github avec le projet. 
+lancer les commandes suivantes : 
+```sh
+  python -m pip install Django
+  ```
+  ```sh
+  python3 manage.py runserver 8000
+  ```
+ 
+  La page web de login sera ouverte dans votre naviguateur 
+  ![My Image](codespace_charge.png)
+
+
+## En local
+
 Après avoir effectué les installations et téléchargé le dépot git, voici les commandes à effectuer.
  ```sh
  python3 manage.py migrate --run-syncdb
