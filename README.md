@@ -60,7 +60,7 @@ lancer les commandes suivantes :
   ```
  
   La page web de login sera ouverte dans votre naviguateur 
-  ![My Image](codespace_charge.png)
+  ![My Image](codespaces_charge.png)
 
 
 ## En local
