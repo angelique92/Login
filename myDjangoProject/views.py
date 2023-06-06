@@ -6,6 +6,7 @@ import datetime
 import re
 import hashlib
 from django.views.decorators.csrf import csrf_exempt
+import sqlite3 
 
 # Fonction qui gère les différentes intéraction sur la page html
 @csrf_exempt
@@ -61,16 +62,60 @@ def index(request):
                             return render(request,
                                           'myDjangoProject/templates/login.html',
                                           {'form': form, "error": "The User " +name + " is block until "+str(time.strftime("%m/%d/%Y, %H:%M:%S")  ) })
-
-
-
-
+                    if result_username == False:
+                        delete_utilisateur(name)
         # L' utilisateur a cliquer sur le bouton Add ->
             # Envoie sur la page de création de compte
         if "btn_add" in request.POST:
             print("L'utilisateur a appuyer sur le bouton ADD")
             form = IdentForm()
             return render(request,'myDjangoProject/templates/create_compte.html', {'form': form})
+        
+        # Rajout du bouton delete
+        if "btn_delete" in request.POST:
+            print("A cliquer sur supp account")
+            form = IdentForm()
+            return render(request,'myDjangoProject/templates/delete.html', {'form': form})
+        
+        if "save_delete" in request.POST: 
+            print("L'utilisateur a appuyer sur le bouton delete account ")
+            if request.POST.get('Password') ==  "":
+                form = IdentForm(request.POST)
+                return render(request,
+                              'myDjangoProject/templates/delete.html',
+                              {'form': form, "error": "The Password  can't be none."})
+            if request.POST.get('Password') == request.POST.get('Password2'):
+                form = IdentForm(request.POST)
+                if form.is_valid():
+                    mdp = form.cleaned_data['Password']
+                    name = form.cleaned_data['Username']
+                    print("Fonction index Name : ", name)
+                    result_password = password_check(mdp)
+                    # Ident.objects.filter(Password=form.cleaned_data['Password']).exists()
+                    # password_check(mdp)
+                    result_username = Ident.objects.filter(Username=form.cleaned_data['Username']).exists()
+                    if result_username == False:
+                        return render(request,
+                                      'myDjangoProject/templates/delete.html',
+                                      {'form': form, "error": "The Username  is not the good one"})
+                    elif result_password == False:
+                        form = IdentForm(request.POST)
+                        return render(request,
+                                      'myDjangoProject/templates/delete.html',
+                                      {'form': form, "error": "One of this password is not right"})
+
+                    elif result_password == True and result_username == True :
+                        result_user_n_pass = Ident.objects.filter(Username=form.cleaned_data['Username'],Password=form.cleaned_data['Password']).delete()
+                        result_username = Ident.objects.filter(Username=form.cleaned_data['Username']).delete()
+                        return render(request,
+                                  'myDjangoProject/templates/delete.html' , {"info": "The User is delete Sucessfully"})
+                        
+            else:
+                form = IdentForm(request.POST)
+                return render(request,
+                              'myDjangoProject/templates/delete.html',
+                              {'form': form,"error": "The Password are not matching"})
+
 
 
         # L' utilisateur a cliquer sur le bouton Save ->
@@ -126,7 +171,7 @@ def index(request):
 
         # L' utilisateur a cliquer sur le bouton Reset ou Back ->
             # Renvoie la page principale de login avec les champs vide
-        elif "btn_reset" or "btn_back" in request.POST:
+        elif "btn_reset" in request.POST:
             print("L'utilisateur a appuyer sur le bouton RESET ou Back")
             form = IdentForm()
             field = form.fields['Password2']
@@ -134,6 +179,16 @@ def index(request):
             return render(request,
                           'myDjangoProject/templates/login.html',
                           {'form': form})
+        
+        elif "btn_back" in request.POST:
+            print("L'utilisateur a appuyer sur le bouton RESET ou Back")
+            form = IdentForm()
+            field = form.fields['Password2']
+            field.widget = field.hidden_widget()
+            return render(request,
+                          'myDjangoProject/templates/login.html',
+                          {'form': form})
+        
 
 
     else:
@@ -246,9 +301,16 @@ def how_much_time_block(name):
 def delete_log(name):
     Log.objects.filter(Username=name, Connection="echec").update(Is_delete=True)
     Log.objects.filter(Username=name, Connection="block").update(Is_delete=True)
+    
+def delete_utilisateur(name):
+    Log.objects.filter(UserWarning=name, Connection="delete").update(Is_delete = True)
 
 
 #Renvoie la page principale
 def connect_page(request):
     return render(request,
                   'myDjangoProject/templates/login.html')
+
+# def delete_page(request):
+#     return render(request,
+#                   'myDjangoProject/templates/delete.html')

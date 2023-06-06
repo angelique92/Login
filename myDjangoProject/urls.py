@@ -16,11 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from .views import index , connect_page
+from .views import index , connect_page 
 
 urlpatterns = [
     path("" , index , name='login'),
-    path("/message" , connect_page , name="connect"),
-    path('admin/', admin.site.urls),
+    path("message" , connect_page , name="connect"),
+    path('admin/', admin.site.urls)
 
 ]
