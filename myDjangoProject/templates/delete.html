@@ -1,0 +1,27 @@
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Page</title>
+    <link rel="stylesheet" href="{% static 'css/deletePage.css' %}">
+</head>
+
+<body>
+<div class="delete-box">
+    <h2>Delete Account</h2>
+    <form action="" method="post" novalidate>
+        {% csrf_token %}
+        <div class="user-box">
+            {{ form }}
+        </div>
+        <center>
+        {% csrf_token %}
+        <button type="submit" name="save_delete"> Save Delete </button>
+        <button type="submit" name="btn_back"> Back </button>
+            </center>
+        {% csrf_token %}
+        <h3 style="color: white;"> {{info}}
+            <h3 style="color: red;"> {{error}}</h3>
+    </form>
+
+</div>
+</body>
