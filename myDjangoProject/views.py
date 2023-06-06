@@ -91,7 +91,9 @@ def index(request):
                     name = form.cleaned_data['Username']
                     print("Fonction index Name : ", name)
                     result_password = password_check(mdp)
-                    result_username = Ident.objects.filter(Username=form.cleaned_data['Username']).delete()
+                    # Ident.objects.filter(Password=form.cleaned_data['Password']).exists()
+                    # password_check(mdp)
+                    result_username = Ident.objects.filter(Username=form.cleaned_data['Username']).exists()
                     if result_username == False:
                         return render(request,
                                       'myDjangoProject/templates/delete.html',
@@ -104,8 +106,10 @@ def index(request):
 
                     elif result_password == True and result_username == True :
                         result_user_n_pass = Ident.objects.filter(Username=form.cleaned_data['Username'],Password=form.cleaned_data['Password']).delete()
+                        result_username = Ident.objects.filter(Username=form.cleaned_data['Username']).delete()
                         return render(request,
                                   'myDjangoProject/templates/delete.html' , {"info": "The User is delete Sucessfully"})
+                        
             else:
                 form = IdentForm(request.POST)
                 return render(request,
